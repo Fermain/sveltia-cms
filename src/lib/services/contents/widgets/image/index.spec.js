@@ -61,6 +61,7 @@ describe('Image Widget Service', () => {
       expect(defaultValue).toEqual({
         path: '',
         alt: '',
+        metadata: {},
       });
     });
   });
@@ -99,8 +100,10 @@ describe('Image Widget Service', () => {
     });
 
     it('should handle partial values', () => {
+      /** @type {import('./types.js').ImageWidgetValue} */
       const value = {
         path: '/images/test.jpg',
+        alt: '',
       };
 
       const result = transformValue(value);
