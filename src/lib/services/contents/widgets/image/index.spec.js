@@ -6,7 +6,12 @@ describe('Image Widget Service', () => {
     it('should validate allowed image formats', async () => {
       const validFile = new File([''], 'test.jpg', { type: 'image/jpeg' });
       const invalidFile = new File([''], 'test.txt', { type: 'text/plain' });
-      const config = {};
+
+      const config = {
+        name: 'test',
+        label: 'Test Image',
+      };
+
       const validResult = await validateImage(validFile, config);
 
       expect(validResult.isValid).toBe(true);
@@ -22,6 +27,8 @@ describe('Image Widget Service', () => {
       const file = new File([''], 'test.png', { type: 'image/png' });
 
       const config = {
+        name: 'test',
+        label: 'Test Image',
         allowed_formats: ['jpg', 'jpeg'],
       };
 
@@ -35,6 +42,8 @@ describe('Image Widget Service', () => {
       const file = new File(['x'.repeat(1024 * 1024)], 'test.jpg', { type: 'image/jpeg' });
 
       const config = {
+        name: 'test',
+        label: 'Test Image',
         max_file_size: 512 * 1024, // 512KB
       };
 
@@ -58,7 +67,7 @@ describe('Image Widget Service', () => {
 
   describe('transformValue', () => {
     it('should handle null/undefined values', () => {
-      const result = transformValue(null, {});
+      const result = transformValue(null);
 
       expect(result).toEqual({
         path: '',
@@ -77,7 +86,7 @@ describe('Image Widget Service', () => {
         },
       };
 
-      const result = transformValue(value, {});
+      const result = transformValue(value);
 
       expect(result).toEqual({
         path: '/images/test.jpg',
@@ -94,7 +103,7 @@ describe('Image Widget Service', () => {
         path: '/images/test.jpg',
       };
 
-      const result = transformValue(value, {});
+      const result = transformValue(value);
 
       expect(result).toEqual({
         path: '/images/test.jpg',
