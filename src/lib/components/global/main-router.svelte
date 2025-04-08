@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte';
   import AssetsPage from '$lib/components/assets/assets-page.svelte';
   import UploadAssetsConfirmDialog from '$lib/components/assets/shared/upload-assets-confirm-dialog.svelte';
   import UploadAssetsDialog from '$lib/components/assets/shared/upload-assets-dialog.svelte';
@@ -10,6 +9,7 @@
   import BottomNavigation from '$lib/components/global/toolbar/bottom-navigation.svelte';
   import GlobalToolbar from '$lib/components/global/toolbar/global-toolbar.svelte';
   import MenuPage from '$lib/components/menu/menu-page.svelte';
+  import ReleasePage from '$lib/components/release/release-page.svelte';
   import SearchPage from '$lib/components/search/search-page.svelte';
   import SettingsPage from '$lib/components/settings/settings-page.svelte';
   import WorkflowPage from '$lib/components/workflow/workflow-page.svelte';
@@ -19,6 +19,7 @@
   import { getFirstCollection, selectedCollection } from '$lib/services/contents/collection';
   import { showContentOverlay } from '$lib/services/contents/draft/editor';
   import { searchMode, showSearchBar } from '$lib/services/search';
+  import { onMount } from 'svelte';
 
   /** @type {Record<string, any>} */
   export const pages = {
@@ -27,6 +28,7 @@
     search: SearchPage,
     workflow: WorkflowPage,
     config: ConfigPage,
+    release: ReleasePage,
     // For small screens
     menu: MenuPage,
     settings: SettingsPage,

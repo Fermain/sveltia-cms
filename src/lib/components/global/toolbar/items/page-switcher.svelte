@@ -1,10 +1,10 @@
 <script>
-  import { Icon, SelectButton, SelectButtonGroup } from '@sveltia/ui';
-  import { _ } from 'svelte-i18n';
   import { isSmallScreen } from '$lib/services/app/env';
   import { goto, selectedPageName } from '$lib/services/app/navigation';
   import { selectedAssetFolder } from '$lib/services/assets';
   import { getFirstCollection, selectedCollection } from '$lib/services/contents/collection';
+  import { Icon, SelectButton, SelectButtonGroup } from '@sveltia/ui';
+  import { _ } from 'svelte-i18n';
 
   const pages = $derived([
     {
@@ -24,6 +24,12 @@
         : $selectedAssetFolder
           ? `/assets/${$selectedAssetFolder.internalPath}`
           : '/assets/all',
+    },
+    {
+      key: 'release',
+      label: $_('release_information'),
+      icon: 'rocket_launch',
+      link: '/release',
     },
     // {
     //   key: 'workflow',
